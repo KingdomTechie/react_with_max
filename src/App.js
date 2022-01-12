@@ -3,6 +3,7 @@ import React from "react";
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 
+
 function App() {
   const expenses = [
     {
@@ -30,9 +31,19 @@ function App() {
     },
   ];
 
+  const onSavedExpenseHandler = (newExpense) => {
+
+    console.log("Expense has been logged");
+    console.log(newExpense);
+    expenses.push(newExpense)
+    console.log(expenses);
+
+
+  }
+
   return (
     <div>
-      <NewExpense />
+      <NewExpense savedExpenseData={onSavedExpenseHandler}/>
       <Expenses expenses={expenses}/>
     </div>
   );
