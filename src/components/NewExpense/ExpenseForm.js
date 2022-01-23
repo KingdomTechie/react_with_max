@@ -3,9 +3,6 @@ import React, { useState } from "react";
 import "./ExpenseForm.css";
 
 const ExpenseForm = (props) => {
-  // const [enteredTitle, setEnteredTitle] = useState("");
-  // const [enteredAmount, setEnteredAmount] = useState("");
-  // const [enteredDate, setEnteredDate] = useState("")
 
   const [userInput, setUserInput] = useState({
     enteredTitle: "",
@@ -40,6 +37,7 @@ const ExpenseForm = (props) => {
       date: new Date(userInput.enteredDate),
     };
 
+    // passing the form data to the parent component of NewExpense
     props.onSaveExpenseData(expenseData)
 
     setUserInput({

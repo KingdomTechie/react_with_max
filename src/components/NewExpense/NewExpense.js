@@ -11,6 +11,7 @@ const NewExpense = (props) => {
       id: Math.random().toString()
     }
     
+    // this data is sent to the parent componenet of App
     props.savedExpenseData(expenseData)
   }
 

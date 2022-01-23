@@ -41,17 +41,12 @@ function App() {
     console.log(dateInput);
 
   }
-  
-  
-
 
   const onSavedExpenseHandler = (newExpense) => {
   
-
     setAllExpenses(prevState => {
       return [newExpense, ...prevState]
     })
-
   }
 
   return (

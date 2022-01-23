@@ -2,37 +2,26 @@ import React from "react";
 
 import Card from "../Card/Card";
 import "./Expenses.css";
-import ExpenseItem from "../ExpenseItem/ExpenseItem";
+// import ExpenseItem from "../ExpenseItem/ExpenseItem";
 import ExpensesFilter from "../ExpenseFilter/ExpenseFilter";
 import { useState } from "react/cjs/react.development";
+import ExpensesList from "../ExpensesList/ExpensesList";
 
 const Expenses = (props) => {
+
+  // We are creating a date state to dynamically render the appropriate Expenses.  
   const [userSelectedDate, setUserSelectedDate] = useState("");
 
+  // This function handles the selected date's state
   const onSelectedDateHandler = (selectedDate) => {
     setUserSelectedDate(selectedDate);
     props.onUserSelectedDate(selectedDate);
   };
 
-  console.log(userSelectedDate);
+  // This new array contains the expenses based on the user's inputed date
   const filteredExpenseArr = props.expenses.filter(
     (expense) => expense.date.getFullYear() == userSelectedDate
   );
-
-  let expenseContent = <p>No Expenses found.</p>;
-
-  if (filteredExpenseArr.length > 0) {
-    expenseContent = filteredExpenseArr.map((expense) => {
-      return (
-        <ExpenseItem
-          key={expense.id}
-          title={expense.title}
-          amount={expense.amount}
-          date={expense.date}
-        />
-      );
-    });
-  }
 
   return (
     <div>
@@ -41,7 +30,7 @@ const Expenses = (props) => {
           selected={userSelectedDate}
           onSelectedDate={onSelectedDateHandler}
         />
-        {expenseContent}
+        <ExpensesList filteredExpenseArr = {filteredExpenseArr}/>
       </Card>
     </div>
   );
