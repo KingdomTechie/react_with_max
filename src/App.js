@@ -1,10 +1,13 @@
 import React from "react";
+import { useState } from "react/cjs/react.development";
 
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 
 
 function App() {
+
+  
   const expenses = [
     {
       id: "e1",
@@ -31,20 +34,31 @@ function App() {
     },
   ];
 
+  const [allExpenses, setAllExpenses] = useState(expenses)
+
+  const userSelectedDate = (dateInput) => {
+
+    console.log(dateInput);
+
+  }
+  
+  
+
+
   const onSavedExpenseHandler = (newExpense) => {
+  
 
-    console.log("Expense has been logged");
-    console.log(newExpense);
-    expenses.push(newExpense)
-    console.log(expenses);
-
+    setAllExpenses(prevState => {
+      return [newExpense, ...prevState]
+    })
 
   }
 
   return (
     <div>
       <NewExpense savedExpenseData={onSavedExpenseHandler}/>
-      <Expenses expenses={expenses}/>
+      {/* {filteredExpenseArr.length === 1 ? <Expenses expenses={filteredExpenseArr} onUserSelectedDate = {userSelectedDate}/> : <Expenses expenses={allExpenses} onUserSelectedDate = {userSelectedDate}/>} */}
+      <Expenses expenses={allExpenses} onUserSelectedDate = {userSelectedDate}/>
     </div>
   );
 }
