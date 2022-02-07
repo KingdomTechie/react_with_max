@@ -6,10 +6,10 @@ import "./Expenses.css";
 import ExpensesFilter from "../ExpenseFilter/ExpenseFilter";
 import { useState } from "react/cjs/react.development";
 import ExpensesList from "../ExpensesList/ExpensesList";
+import ExpensesChart from "../ExpensesChart/ExpensesChart";
 
 const Expenses = (props) => {
-
-  // We are creating a date state to dynamically render the appropriate Expenses.  
+  // We are creating a date state to dynamically render the appropriate Expenses.
   const [userSelectedDate, setUserSelectedDate] = useState("");
 
   // This function handles the selected date's state
@@ -25,12 +25,13 @@ const Expenses = (props) => {
 
   return (
     <div>
+      <ExpensesChart expenses = {filteredExpenseArr}/>
       <Card className="expenses">
         <ExpensesFilter
           selected={userSelectedDate}
           onSelectedDate={onSelectedDateHandler}
         />
-        <ExpensesList filteredExpenseArr = {filteredExpenseArr}/>
+        <ExpensesList filteredExpenseArr={filteredExpenseArr} />
       </Card>
     </div>
   );

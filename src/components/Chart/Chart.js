@@ -5,16 +5,20 @@ import "./Chart.css";
 
 const Chart = (props) => {
 
-    
+    const dataPointValues = props.chartDataPoints.map(dataPoints => dataPoints.value)
+
+    const totalMax = Math.max(...dataPointValues)
   return (
     <div className="chart">
-      {props.dataPoints.map((dataPoint) => {
-        <ChartBar
-          key={dataPoint.label}
-          value={dataPoint.value}
-          maxValue={null}
-          label={dataPoint.label}
-        />;
+      {props.chartDataPoints.map((dataPoint) => {
+        return (
+          <ChartBar
+            key={dataPoint.label}
+            value={dataPoint.value}
+            maxValue={totalMax}
+            label={dataPoint.label}
+          />
+        );
       })}
     </div>
   );

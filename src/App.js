@@ -6,6 +6,7 @@ import NewExpense from "./components/NewExpense/NewExpense";
 import AddNewExpenseWindow from "./components/AddNewExpenseWindow/AddNewExpenseWindow";
 
 
+
 function App() {
 
   
@@ -68,6 +69,7 @@ function App() {
       expenseWindowOpen ? <NewExpense savedExpenseData={onSavedExpenseHandler} onClickOpen={onClickOpenNewExpenseWindow} onCancel={onCancelHandler}/> 
       : <AddNewExpenseWindow onClickOpen={onClickOpenNewExpenseWindow}/>
       }
+      
       
       <Expenses expenses={allExpenses} onUserSelectedDate = {userSelectedDate}/>
     </div>
