@@ -3,6 +3,7 @@ import { useState } from "react/cjs/react.development";
 
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
+import AddNewExpenseWindow from "./components/AddNewExpenseWindow/AddNewExpenseWindow";
 
 
 function App() {
@@ -34,6 +35,8 @@ function App() {
     },
   ];
 
+  const [expenseWindowOpen, setExpenseWindow] = useState(false)
+
   const [allExpenses, setAllExpenses] = useState(expenses)
 
   const userSelectedDate = (dateInput) => {
@@ -47,12 +50,25 @@ function App() {
     setAllExpenses(prevState => {
       return [newExpense, ...prevState]
     })
+
+    setExpenseWindow(false)
+  }
+
+  const onClickOpenNewExpenseWindow = () => {
+    setExpenseWindow(true)
+  }
+
+  const onCancelHandler = () => {
+    setExpenseWindow(false)
   }
 
   return (
     <div>
-      <NewExpense savedExpenseData={onSavedExpenseHandler}/>
-      {/* {filteredExpenseArr.length === 1 ? <Expenses expenses={filteredExpenseArr} onUserSelectedDate = {userSelectedDate}/> : <Expenses expenses={allExpenses} onUserSelectedDate = {userSelectedDate}/>} */}
+    {
+      expenseWindowOpen ? <NewExpense savedExpenseData={onSavedExpenseHandler} onClickOpen={onClickOpenNewExpenseWindow} onCancel={onCancelHandler}/> 
+      : <AddNewExpenseWindow onClickOpen={onClickOpenNewExpenseWindow}/>
+      }
+      
       <Expenses expenses={allExpenses} onUserSelectedDate = {userSelectedDate}/>
     </div>
   );

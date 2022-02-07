@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import "./ExpenseForm.css";
 
 const ExpenseForm = (props) => {
-
   const [userInput, setUserInput] = useState({
     enteredTitle: "",
     enteredAmount: "",
@@ -38,7 +37,7 @@ const ExpenseForm = (props) => {
     };
 
     // passing the form data to the parent component of NewExpense
-    props.onSaveExpenseData(expenseData)
+    props.onSaveExpenseData(expenseData);
 
     setUserInput({
       enteredTitle: "",
@@ -46,6 +45,7 @@ const ExpenseForm = (props) => {
       enteredDate: "",
     });
   };
+
 
   return (
     <form onSubmit={submitHandler}>
@@ -79,8 +79,13 @@ const ExpenseForm = (props) => {
           />
         </div>
       </div>
-      <div className="new-expense__actions">
-        <button type="submit">Add Expense</button>
+      <div className="button-group">
+        <div className="new-expense__actions">
+          <button type="button" onClick={props.onCancel}>Cancel</button>
+        </div>
+        <div className="new-expense__actions">
+          <button type="submit">Add Expense</button>
+        </div>
       </div>
     </form>
   );
